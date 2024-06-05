@@ -17,9 +17,10 @@ fn build_with_common_settings() -> cc::Build {
 fn main() {
     build_with_common_settings()
         .cpp(true)
-        .define("BASISD_SUPPORT_KTX2_ZSTD", "0")
+        .define("BASISD_SUPPORT_KTX2_ZSTD", "1")
         //.define("BASISU_SUPPORT_SSE", "1") TODO: expose this in a futher release
         .flag_if_supported("--std=c++11")
+        .file("vendor/basis_universal/zstd/zstd.c")
         .file("vendor/basis_universal/encoder/pvpngreader.cpp")
         .file("vendor/basis_universal/encoder/jpgd.cpp")
         .file("vendor/basis_universal/encoder/basisu_uastc_enc.cpp")
