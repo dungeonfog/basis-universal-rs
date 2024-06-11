@@ -1,7 +1,6 @@
 use super::*;
 use crate::{BasisTextureFormat, UserData};
 use basis_universal_sys as sys;
-pub use basis_universal_sys::ColorU8;
 
 /// The color space the image to be compressed is encoded in. Using the correct color space will
 #[derive(Debug, Copy, Clone)]
@@ -164,6 +163,7 @@ impl CompressorParams {
 
     /// Sets UASTC quality level. The value MUST be >= [UASTC_QUALITY_MIN](crate::UASTC_QUALITY_MIN)
     /// and <= [UASTC_QUALITY_MAX](crate::UASTC_QUALITY_MAX).
+    #[allow(clippy::absurd_extreme_comparisons)]
     pub fn set_uastc_quality_level(
         &mut self,
         quality_level: u32,

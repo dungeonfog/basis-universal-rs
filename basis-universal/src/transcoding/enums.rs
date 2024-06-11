@@ -17,9 +17,9 @@ pub enum BasisTextureType {
     TextureTypeVolume = sys::basist_basis_texture_type_cBASISTexTypeVolume,
 }
 
-impl Into<sys::basist_basis_texture_type> for BasisTextureType {
-    fn into(self) -> sys::basist_basis_texture_type {
-        self as sys::basist_basis_texture_type
+impl From<BasisTextureType> for sys::basist_basis_texture_type {
+    fn from(val: BasisTextureType) -> Self {
+        val as sys::basist_basis_texture_type
     }
 }
 
@@ -55,15 +55,17 @@ pub enum BasisTextureFormat {
     UASTC4x4 = sys::basist_basis_tex_format_cUASTC4x4,
 }
 
-impl Into<sys::basist_basis_tex_format> for BasisTextureFormat {
-    fn into(self) -> sys::basist_basis_tex_format {
-        self as sys::basist_basis_tex_format
+impl From<BasisTextureFormat> for sys::basist_basis_tex_format {
+    fn from(val: BasisTextureFormat) -> Self {
+        val as sys::basist_basis_tex_format
     }
 }
 
 impl From<sys::basist_basis_tex_format> for BasisTextureFormat {
     fn from(value: sys::basist_basis_tex_format) -> Self {
-        unsafe { std::mem::transmute(value as i32) }
+        unsafe {
+            std::mem::transmute(value /*as i32*/)
+        }
     }
 }
 
@@ -154,15 +156,17 @@ pub enum TranscoderTextureFormat {
     RGBA4444 = sys::basist_transcoder_texture_format_cTFRGBA4444,
 }
 
-impl Into<sys::basist_transcoder_texture_format> for TranscoderTextureFormat {
-    fn into(self) -> sys::basist_transcoder_texture_format {
-        self as sys::basist_transcoder_texture_format
+impl From<TranscoderTextureFormat> for sys::basist_transcoder_texture_format {
+    fn from(val: TranscoderTextureFormat) -> Self {
+        val as sys::basist_transcoder_texture_format
     }
 }
 
 impl From<sys::basist_transcoder_texture_format> for TranscoderTextureFormat {
     fn from(value: sys::basist_transcoder_texture_format) -> Self {
-        unsafe { std::mem::transmute(value as i32) }
+        unsafe {
+            std::mem::transmute(value /*as i32*/)
+        }
     }
 }
 
@@ -388,15 +392,17 @@ pub enum TranscoderBlockFormat {
     RGBA4444 = sys::basist_block_format_cRGBA4444,
 }
 
-impl Into<sys::basist_block_format> for TranscoderBlockFormat {
-    fn into(self) -> sys::basist_block_format {
-        self as sys::basist_block_format
+impl From<TranscoderBlockFormat> for sys::basist_block_format {
+    fn from(val: TranscoderBlockFormat) -> Self {
+        val as sys::basist_block_format
     }
 }
 
 impl From<sys::basist_block_format> for TranscoderBlockFormat {
     fn from(value: sys::basist_block_format) -> Self {
-        unsafe { std::mem::transmute(value as i32) }
+        unsafe {
+            std::mem::transmute(value /*as i32*/)
+        }
     }
 }
 

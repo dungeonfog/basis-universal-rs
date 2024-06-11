@@ -105,7 +105,7 @@ impl Transcoder {
     pub fn user_data(
         &self,
         data: &[u8],
-    ) -> Result<UserData, ()> {
+    ) -> Option<UserData> {
         let mut userdata = UserData::default();
         let result = unsafe {
             sys::transcoder_get_userdata(
@@ -116,12 +116,7 @@ impl Transcoder {
                 &mut userdata.userdata1,
             )
         };
-
-        if result {
-            Ok(userdata)
-        } else {
-            Err(())
-        }
+        result.then_some(userdata)
     }
 
     /// Number of images in the basis data

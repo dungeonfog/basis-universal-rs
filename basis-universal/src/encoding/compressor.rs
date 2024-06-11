@@ -1,6 +1,5 @@
 use super::*;
 use basis_universal_sys as sys;
-pub use basis_universal_sys::ColorU8;
 
 /// Error codes that can be returned when encoding basis-universal data with a [Compressor]
 #[allow(non_camel_case_types)]
@@ -20,9 +19,9 @@ pub enum CompressorErrorCode {
         sys::basisu_basis_compressor_error_code_cECFailedUASTCRDOPostProcess,
 }
 
-impl Into<sys::basisu_basis_compressor_error_code> for CompressorErrorCode {
-    fn into(self) -> sys::basisu_basis_compressor_error_code {
-        self as sys::basisu_basis_compressor_error_code
+impl From<CompressorErrorCode> for sys::basisu_basis_compressor_error_code {
+    fn from(val: CompressorErrorCode) -> Self {
+        val as sys::basisu_basis_compressor_error_code
     }
 }
 

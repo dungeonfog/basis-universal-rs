@@ -15,8 +15,8 @@ fn test_get_format_name() {
 
 #[test]
 fn test_transcoder_format_has_alpha() {
-    assert_eq!(TranscoderTextureFormat::BC1_RGB.has_alpha(), false);
-    assert_eq!(TranscoderTextureFormat::BC7_RGBA.has_alpha(), true);
+    assert!(!TranscoderTextureFormat::BC1_RGB.has_alpha());
+    assert!(TranscoderTextureFormat::BC7_RGBA.has_alpha());
 }
 
 #[test]

@@ -183,7 +183,7 @@ fn benchmark_encode(
     // LZ4 compression is recommended for UASTC4x4 files
     if basis_texture_format == BasisTextureFormat::UASTC4x4 {
         let mut encoder = lz4::EncoderBuilder::new().build(Vec::new()).unwrap();
-        encoder.write(compressor.basis_file()).unwrap();
+        encoder.write_all(compressor.basis_file()).unwrap();
         let (lz4_compressed, result) = encoder.finish();
         result.unwrap();
         println!("  lz4 compressed size: {} KB", lz4_compressed.len() / 1024);
