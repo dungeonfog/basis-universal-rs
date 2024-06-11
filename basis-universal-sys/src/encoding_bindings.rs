@@ -583,6 +583,12 @@ extern "C" {
     );
 }
 extern "C" {
+    pub fn compressor_params_set_mip_fast(
+        params: *mut CompressorParams,
+        mip_fast: bool,
+    );
+}
+extern "C" {
     pub fn compressor_params_set_userdata(
         params: *mut CompressorParams,
         userdata0: u32,
