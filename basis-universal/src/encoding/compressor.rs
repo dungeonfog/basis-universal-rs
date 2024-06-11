@@ -4,7 +4,7 @@ use basis_universal_sys as sys;
 /// Error codes that can be returned when encoding basis-universal data with a [Compressor]
 #[allow(non_camel_case_types)]
 #[derive(Copy, Clone, Debug, PartialEq)]
-#[repr(i32)]
+#[repr(u32)]
 pub enum CompressorErrorCode {
     cECFailedReadingSourceImages =
         sys::basisu_basis_compressor_error_code_cECFailedReadingSourceImages,
@@ -27,7 +27,9 @@ impl From<CompressorErrorCode> for sys::basisu_basis_compressor_error_code {
 
 impl From<sys::basisu_basis_compressor_error_code> for CompressorErrorCode {
     fn from(value: sys::basisu_basis_compressor_error_code) -> Self {
-        unsafe { std::mem::transmute(value as u32) }
+        unsafe {
+            std::mem::transmute(value /*as u32*/)
+        }
     }
 }
 

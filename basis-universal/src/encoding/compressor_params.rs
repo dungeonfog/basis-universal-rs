@@ -1,5 +1,5 @@
 use super::*;
-use crate::{BasisTextureFormat, UserData};
+use crate::{BasisTextureFormat, Ktx2Compression, UserData};
 use basis_universal_sys as sys;
 
 /// The color space the image to be compressed is encoded in. Using the correct color space will
@@ -173,7 +173,7 @@ impl CompressorParams {
 
         unsafe {
             let mut flags = sys::compressor_params_get_pack_uastc_flags(self.0);
-            flags |= quality_level as i32; // bindgen reflects constants as signed integers. So even if it doesn't make sense for the quality level to be signed, it has to be.
+            flags |= quality_level; // bindgen reflects constants as signed integers. So even if it doesn't make sense for the quality level to be signed, it has to be.
             sys::compressor_params_set_pack_uastc_flags(self.0, flags);
         }
     }
@@ -318,6 +318,17 @@ impl CompressorParams {
         create_ktx2_file: bool,
     ) {
         unsafe { sys::compressor_params_set_create_ktx2_file(self.0, create_ktx2_file) }
+    }
+
+    /// Set the compression algorithm used when creating the ktx2 file.
+    /// Defaults to none.
+    pub fn set_ktx2_compression(
+        &mut self,
+        compression: Ktx2Compression,
+    ) {
+        unsafe {
+            sys::compressor_params_set_ktx2_uastc_supercompression(self.0, compression.into())
+        }
     }
 
     /// The `basisu` command line compressor offers a -normal_map parameter that sets several

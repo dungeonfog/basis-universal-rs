@@ -453,7 +453,7 @@ impl LowLevelUastcTranscoder {
                 output_rows_in_pixels,
                 channel0,
                 channel1,
-                decode_flags.bits(),
+                decode_flags.bits() as i32,
             )
         };
 

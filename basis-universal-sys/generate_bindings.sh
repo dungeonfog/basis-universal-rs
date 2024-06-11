@@ -95,6 +95,7 @@ bindgen vendor/encoding_wrapper.cpp -o src/encoding_bindings.rs \
   --allowlist-function compressor_params_set_mip_smallest_dimension \
   --allowlist-function compressor_params_set_userdata \
   --allowlist-function compressor_params_set_create_ktx2_file \
+  --allowlist-function compressor_params_set_ktx2_uastc_supercompression \
   \
   --allowlist-function compressor_new \
   --allowlist-function compressor_delete \

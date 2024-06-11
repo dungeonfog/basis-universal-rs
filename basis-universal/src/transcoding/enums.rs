@@ -3,7 +3,7 @@ use std::ffi::CStr;
 
 /// The type of data stored
 #[derive(Copy, Clone, Debug, PartialEq)]
-#[repr(i32)]
+#[repr(u32)]
 pub enum BasisTextureType {
     /// An arbitrary array of 2D RGB or RGBA images with optional mipmaps, array size = # images, each image may have a different resolution and # of mipmap levels
     TextureType2D = sys::basist_basis_texture_type_cBASISTexType2D,
@@ -25,7 +25,9 @@ impl From<BasisTextureType> for sys::basist_basis_texture_type {
 
 impl From<sys::basist_basis_texture_type> for BasisTextureType {
     fn from(value: sys::basist_basis_texture_type) -> Self {
-        unsafe { std::mem::transmute(value as u32) }
+        unsafe {
+            std::mem::transmute(value /*as u32*/)
+        }
     }
 }
 
@@ -309,7 +311,7 @@ impl TranscoderTextureFormat {
 
 bitflags::bitflags! {
     /// Flags that affect transcoding
-    pub struct DecodeFlags: i32 {
+    pub struct DecodeFlags: u32 {
         /// PVRTC1: decode non-pow2 ETC1S texture level to the next larger power of 2 (not implemented yet, but we're going to support it). Ignored if the slice's dimensions are already a power of 2.
         const PVRTC_DECODE_TO_NEXT_POW_2 = sys::basist_basisu_decode_flags_cDecodeFlagsPVRTCDecodeToNextPow2;
 
@@ -522,5 +524,28 @@ impl TranscoderBlockFormat {
             output_row_pitch_in_blocks_or_pixels,
             output_rows_in_pixels,
         ) * self.bytes_per_block_or_pixel()
+    }
+}
+
+#[allow(non_camel_case_types)]
+#[derive(Copy, Clone, Debug, PartialEq)]
+#[repr(i32)]
+pub enum Ktx2Compression {
+    NONE,
+    BASISLZ,
+    ZSTANDARD,
+}
+
+impl From<Ktx2Compression> for sys::basist_ktx2_supercompression {
+    fn from(value: Ktx2Compression) -> Self {
+        value as sys::basist_ktx2_supercompression
+    }
+}
+
+impl From<sys::basist_ktx2_supercompression> for Ktx2Compression {
+    fn from(value: sys::basist_ktx2_supercompression) -> Self {
+        unsafe {
+            std::mem::transmute(value /*as u32*/)
+        }
     }
 }

@@ -236,6 +236,9 @@ extern "C" {
     void compressor_params_set_create_ktx2_file(CompressorParams *params, bool create_ktx2_file) {
         params->pParams->m_create_ktx2_file = create_ktx2_file;
     }
+    void compressor_params_set_ktx2_uastc_supercompression(CompressorParams *params, basist::ktx2_supercompression compression) {
+        params->pParams->m_ktx2_uastc_supercompression = compression;
+    }
 
     // compressor_params_set_multithreaded is not implemented because this parameter is controlled by thread count
     // passed to compressor_new()
