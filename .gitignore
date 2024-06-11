@@ -7,3 +7,4 @@ CMakeFiles
 /basis-universal-sys/vendor/Makefile
 /basis-universal-sys/vendor/cmake_install.cmake
 .DS_Store
+.direnv/
